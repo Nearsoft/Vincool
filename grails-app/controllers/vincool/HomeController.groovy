@@ -13,7 +13,7 @@ class HomeController {
         } else if (roleUserService.isCurrentUserAnAdmin()) {
             forward controller: "event"
         } else {
-            render(view: "landing_esp", model: [instructors: Instructor.findAllByNameIsNotNullAndIsPublic(true), nextClasses: Event.createCriteria().list {
+            render(view: "landing_esp", model: [instructors: Instructor.findAllByNameIsNotNullAndIsPublic(true)?.collate(3), nextClasses: Event.createCriteria().list {
                 ge('date', LocalDate.now())
                 batch {
                     eq('isActive', true)

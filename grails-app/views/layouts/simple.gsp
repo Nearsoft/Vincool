@@ -26,7 +26,7 @@
                     <li>
                         <span class="m-r-sm text-muted welcome-message"></span>
                     </li>
-                    <li class="dropdown">
+                    <!--li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                             <i class="fa fa-envelope"></i>  <span class="label label-warning">0</span>
                         </a>
@@ -40,7 +40,7 @@
                         <ul class="dropdown-menu dropdown-alerts">
 
                         </ul>
-                    </li>
+                    </li-->
 
 
                     <li>

@@ -144,24 +144,25 @@
                         </label>
                         </p>
                         <g:textArea id="aboutMeInput" name="description" cols="80" rows="8" class="form-control"/>
+                        <sec:ifAnyGranted roles='ROLE_INSTRUCTOR'>
+                            <p>
+                            <h5><i class="fa fa-user"></i> <g:message code="public.profile.title"
+                                                                      default="Public Profile?"/></h5>
+                            </p>
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <g:checkBox name="isPublic"
+                                                value="${user.isPublic}"
+                                                class="onoffswitch-checkbox"/>
+                                    <label class="onoffswitch-label" for="isPublic">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
 
-                        <p>
-                        <h5><i class="fa fa-user"></i> <g:message code="public.profile.title" default="Public Profile?"/></h5>
-                        </p>
-                        <div class="switch">
-                            <div class="onoffswitch">
-                                <g:checkBox name="isPublic"
-                                            value="${user.isPublic}"
-                                            class="onoffswitch-checkbox"/>
-                                <label class="onoffswitch-label" for="isPublic">
-                                    <span class="onoffswitch-inner"></span>
-                                    <span class="onoffswitch-switch"></span>
-                                </label>
-
+                                </div>
                             </div>
-                        </div>
-                        <br>
-
+                            <br>
+                        </sec:ifAnyGranted>
                         <div class="user-button">
                             <div class="row">
                                 <div class="col-md-12">

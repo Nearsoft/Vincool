@@ -2,6 +2,19 @@
 <html>
 <head>
     <meta name="layout" content="landing">
+    <meta property="og:locale" content="es_MX"/>
+    <meta property="og:title" content="Nearsoft Apprentice ">
+    <meta property="og:description"
+          content="Nearsoft Apprentice es un programa dirigido a cualquier persona que tenga deseos de aprender, desde estudiantes hasta profesionistas de otras áreas que deseen adentrarse en el mundo del desarrollo de software.">
+    <meta property="og:url" content="${request.getRequestURL()}">
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:title" content="Nearsoft Apprentice">
+    <meta name="twitter:description"
+          content="Nearsoft Apprentice es un programa dirigido a cualquier persona que tenga deseos de aprender, desde estudiantes hasta profesionistas de otras áreas que deseen adentrarse en el mundo del desarrollo de software.">
+    <meta name="twitter:image"
+          content="${request.getRequestURL()}assets/landing_page/img/plantilla.png">
+    <meta property="og:image"
+          content="${request.getRequestURL()}assets/landing_page/img/plantilla.png"/>
 </head>
 
 <body id="page-top">
@@ -140,7 +153,7 @@
     <div class="row">
         <div class="col-md-6 text-center wow fadeInLeft">
             <div>
-                <i class="fa fa-mobile features-icon"></i>
+                <i class="fa fa-graduation-cap features-icon"></i>
 
                 <h2>Ciencia de la Computacion</h2>
 
@@ -148,7 +161,7 @@
             </div>
 
             <div class="m-t-lg">
-                <i class="fa fa-bar-chart features-icon"></i>
+                <i class="fa fa-trello features-icon"></i>
 
                 <h2>Métodos Ágiles</h2>
 
@@ -158,7 +171,7 @@
 
         <div class="col-md-6 text-center wow fadeInRight">
             <div>
-                <i class="fa fa-envelope features-icon"></i>
+                <i class="fa fa-database features-icon"></i>
 
                 <h2>Bases de Datos</h2>
 
@@ -166,7 +179,7 @@
             </div>
 
             <div class="m-t-lg">
-                <i class="fa fa-google features-icon"></i>
+                <i class="fa fa-book features-icon"></i>
 
                 <h2>Diseño de Software</h2>
 
@@ -188,33 +201,38 @@
             </div>
         </div>
 
-        <div class="row">
-            <g:each in="${instructors}">
-                <div class="col-sm-4 wow fadeInLeft">
-                    <div class="team-member">
-                        <img src="${it.profilePictureUrl}"
-                             class="img-responsive img-circle img-small" alt=""/>
-                        <h4><span class="navy">${it.name}</span> </h4>
+        <g:each in="${instructors}" var="line">
+            <div class="row">
+                <g:each in="${line}">
+                    <div class="col-sm-4 wow fadeInLeft">
+                        <div class="team-member">
+                            <img src="${it.profilePictureUrl}"
+                                 class="img-responsive img-circle img-small" alt=""/>
+                            <h4><span class="navy">${it.name}</span></h4>
 
-                        <p>${it.description}</p>
-                        <ul class="list-inline social-icon">
-                            <g:if test="${it.twitter}">
-                                <li><a target="_blank" href="https://twitter.com/${it.twitter}"><i class="fa fa-twitter"></i></a>
-                                </li>
-                            </g:if>
-                            <g:if test="${it.github}">
-                                <li><a target="_blank" href="https://github.com/${it.github}"><i class="fa fa-github"></i></a>
-                                </li>
-                            </g:if>
-                            <g:if test="${it.linkedin}">
-                                <li><a target="_blank" href="https://www.linkedin.com/in/${it.linkedin}"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                            </g:if>
-                        </ul>
+                            <p>${it.description}</p>
+                            <ul class="list-inline social-icon">
+                                <g:if test="${it.twitter}">
+                                    <li><a target="_blank" href="https://twitter.com/${it.twitter}"><i
+                                            class="fa fa-twitter"></i></a>
+                                    </li>
+                                </g:if>
+                                <g:if test="${it.github}">
+                                    <li><a target="_blank" href="https://github.com/${it.github}"><i
+                                            class="fa fa-github"></i></a>
+                                    </li>
+                                </g:if>
+                                <g:if test="${it.linkedin}">
+                                    <li><a target="_blank" href="https://www.linkedin.com/in/${it.linkedin}"><i
+                                            class="fa fa-linkedin"></i></a>
+                                    </li>
+                                </g:if>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </g:each>
-        </div>
+                </g:each>
+            </div>
+        </g:each>
     </div>
 </section>
 <section id="next" class="timeline gray-section" style="margin-top: 0px;">
@@ -245,7 +263,8 @@
 
                                 <p>${it.description}
                                 </p>
-                                <g:link controller="event" action="show" id="${it.id}" class="btn btn-xs btn-primary">Más información</g:link>
+                                <g:link controller="event" action="show" id="${it.id}"
+                                        class="btn btn-xs btn-primary">Más información</g:link>
                                 <span class="vertical-date"><g:formatDate date="${it.date}"/></span>
                             </div>
                         </div>
@@ -277,7 +296,7 @@
                     No son clases tipo escuela y los instructores viven día a día en el desarrollo de software por lo que la información que se da realmente te ayuda a abrirte el panorama de lo que creías que era el desarrollo de software."</i>
                 </div>
                 <small>
-                    <strong>Feb.07.2016 - Luis Alducin, Estudiante de ESCOM, Egresado de NS Academy </strong>
+                    <strong>Feb.07.2016 - Luis Alducin, Estudiante de ESCOM, Egresado de NS Academy</strong>
                 </small>
             </div>
         </div>
