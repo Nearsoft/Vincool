@@ -26,7 +26,7 @@
                     <dt>Category:</dt> <dd>${event.eventCategory.category}</dd>
                     <dt>Type:</dt> <dd>${event.type}</dd>
                     <dt>Instructor:</dt> <dd>${event.instructor}</dd>
-                    <dt>Description:</dt> <dd>${event.description}</dd>
+                    <dt>Description:</dt> <dd>${raw(event.description)}</dd>
                     <dt>Picture Url:</dt> <dd>
                         <g:if test="${event.pictureUrl}">
                             <a href="${event.pictureUrl}" target="_blank"><g:message

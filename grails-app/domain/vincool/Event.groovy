@@ -27,7 +27,8 @@ class Event {
         time()
         type()
         office()
-        pictureUrl nullable: true, display: false
+        pictureUrl nullable: true
+        description widget: 'textarea'
     }
 
     static mapping = {

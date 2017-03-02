@@ -107,6 +107,7 @@
                                 });
                             </script>
                         </div>
+
                         <div class="navy-line" style="margin: 20px auto 0;"></div>
                     </div>
                 </div>
@@ -118,8 +119,16 @@
                                        default="Event description"/></h4>
 
                         <p>
-                            ${event.description}
+                            ${raw(event.description)}
                         </p>
+                        <h4>FAQs</h4>
+                        <dl>
+                            <dt>¿Que costo tiene?</dt><dd>Las clases son <b>gratuitas</b> solo tienes que registrarte en esta pagina.
+                        </dd>
+                            <dt>¿Que necesito llevar?</dt> <dd>Te recomendamos llevar tu <b>computadora</b> para las clases practicas.
+                        </dd>
+                            <dt>¿Cuanto dura la clase?</dt> <dd>La clase tiene una duracion de aprox. 2:30 horas.</dd>
+                        </dl>
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-xs-12">

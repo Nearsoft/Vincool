@@ -1252,7 +1252,8 @@ dd {
   line-height: 1.42857143;
 }
 dt {
-  font-weight: bold;
+  margin-top: 12px;
+  font-style: italic;
 }
 dd {
   margin-left: 0;

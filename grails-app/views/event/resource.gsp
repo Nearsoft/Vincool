@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Event</label>
                 <div class="col-sm-10">
-                    <label class="col-sm-12">${event.eventCategory.subCategory} - ${event.description}</label>
+                    <label class="col-sm-12">${event.eventCategory.subCategory} - ${raw(event.description)}</label>
                     <input type="hidden" name="event.id" value="${event.id}" />
                 </div>
             </div>

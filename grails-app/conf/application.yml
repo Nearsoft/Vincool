@@ -113,8 +113,9 @@ environments:
             dbCreate: update
             url: jdbc:postgresql://localhost:5432/vincool
             driverClassName: org.postgresql.Driver
-            username: postgres
-            password: password
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+            username: vincool
+            password: vincool
 
     production:
         dataSource:

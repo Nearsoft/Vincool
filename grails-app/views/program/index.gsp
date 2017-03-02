@@ -23,7 +23,7 @@
 
                                     <div class="vertical-timeline-content">
                                         <h2>${it.eventCategory} - ${it.type}</h2>
-                                        <p>${it.description}
+                                        <p>${raw(it.description)}
                                         </p>
                                         <g:link controller="event" action="show" id="${it.id}"
                                                 class="btn btn-xs btn-primary">Mas informacion</g:link>
