@@ -209,7 +209,7 @@
                                     <tr>
                                         <td>${resource.name}</td>
                                         <td>${resource.description}</td>
-                                        <td><a target="_blank" href="${resource.url}">${resource.url}</a></td>
+                                        <td><a class="btn btn-primary btn-outline" target="_blank" href="${resource.url}">Ver</a></td>
                                     </tr>
                                 </g:each>
 
