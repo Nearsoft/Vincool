@@ -5,7 +5,7 @@ import grails.databinding.BindingFormat
 import java.time.LocalDate
 import java.time.LocalTime
 
-class Event implements NotificationService.Rateable {
+class Event implements Rateable {
 
     String type
     @BindingFormat("yyyy-MM-dd")

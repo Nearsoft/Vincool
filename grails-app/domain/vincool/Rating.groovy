@@ -19,4 +19,9 @@ class Rating {
         }
         getClass().classLoader.loadClass(entityClass).get(entityId)
     }
+
+    static mapping = {
+        version false
+        id sqlType:"serial"
+    }
 }

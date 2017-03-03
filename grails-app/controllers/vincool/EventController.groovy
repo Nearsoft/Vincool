@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity
 import static org.springframework.http.HttpStatus.OK
 
 @Secured(['ROLE_ADMIN', 'ROLE_INSTRUCTOR'])
-class EventController {
+class EventController implements Rateable {
 
     def springSecurityService
     def roleUserService
@@ -20,6 +20,7 @@ class EventController {
     static allowedMethods = [index: "GET", show: "GET", resource: "GET", addResource: "POST"]
 
     final MAX_ATTENDEES_PICTURES = 10
+
 
     @Secured(['ROLE_ADMIN', 'ROLE_INSTRUCTOR', 'ROLE_STUDENT'])
     def index(Integer max) {
