@@ -21,6 +21,8 @@ class SecRole implements Serializable {
 
 	static mapping = {
 		cache true
+		id sqlType:"serial"
+
 	}
 
 	String toString(){

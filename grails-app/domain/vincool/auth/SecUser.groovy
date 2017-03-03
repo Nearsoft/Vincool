@@ -3,79 +3,82 @@ package vincool.auth
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
-@EqualsAndHashCode(includes='username')
+@EqualsAndHashCode(includes = 'username')
 class SecUser implements Serializable {
 
-	private static final long serialVersionUID = 1
+    private static final long serialVersionUID = 1
 
-	transient springSecurityService
+    transient springSecurityService
 
-	String username
-	String password
-	String email
-	String name
-	String firstName
-	String lastName
-	String gender
-	String profilePictureUrl
-	String description
+    String username
+    String password
+    String email
+    String name
+    String firstName
+    String lastName
+    String gender
+    String profilePictureUrl
+    String description
 
-	String twitter
-	String github
-	String linkedin
+    String twitter
+    String github
+    String linkedin
 
-	static hasMany = [oAuthIDs: OAuthID, roles: SecUserSecRole]
+    static hasMany = [oAuthIDs: OAuthID, roles: SecUserSecRole]
 
-	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
-	SecUser(String username, String password) {
-		this()
-		this.username = username
-		this.password = password
-	}
+    boolean enabled = true
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
 
-	Set<SecRole> getAuthorities() {
-		SecUserSecRole.findAllBySecUser(this)*.secRole
-	}
+    SecUser(String username, String password) {
+        this()
+        this.username = username
+        this.password = password
+    }
 
-	def beforeInsert() {
-		encodePassword()
-	}
+    Set<SecRole> getAuthorities() {
+        SecUserSecRole.findAllBySecUser(this)*.secRole
+    }
 
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
+    def beforeInsert() {
+        encodePassword()
+    }
 
-	protected void encodePassword() {
-		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
-	}
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+    }
 
-	static transients = ['springSecurityService']
+    protected void encodePassword() {
+        password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+    }
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false, display: false
-		email email: true, blank: false
-		name blank: true, nullable: true
-		firstName nullable: true
-		lastName nullable: true
-		description blank: true, nullable: true
-		gender nullable: true
-		profilePictureUrl nullable: true
-		twitter blank: true, nullable: true
-		github blank: true, nullable: true
-		linkedin blank: true, nullable: true
-	}
+    static transients = ['springSecurityService']
 
-	static mapping = {
-		password column: '`password`'
-	}
+    static constraints = {
+        username blank: false, unique: true
+        password blank: false, display: false
+        email email: true, blank: false
+        name blank: true, nullable: true
+        firstName nullable: true
+        lastName nullable: true
+        description blank: true, nullable: true
+        gender nullable: true
+        profilePictureUrl nullable: true
+        twitter blank: true, nullable: true
+        github blank: true, nullable: true
+        linkedin blank: true, nullable: true
+    }
 
-	String toString(){
-		username
-	}
+    static mapping = {
+        password column: '`password`'
+        id sqlType:"serial"
+
+    }
+
+    String toString() {
+        username
+    }
 }

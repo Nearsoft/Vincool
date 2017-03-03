@@ -25,6 +25,7 @@ class EventCategory {
 
     static mapping = {
         version false
+        id sqlType:"serial"
     }
     String toString(){
         subCategory

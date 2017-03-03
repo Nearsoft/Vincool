@@ -11,5 +11,8 @@ class Notification {
 
     static mapping = {
         seen defaultValue: false
+        id sqlType:"serial"
+        version false
+        type column: "notification_type", enumType:"ordinal"
     }
 }

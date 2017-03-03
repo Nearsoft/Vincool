@@ -16,6 +16,7 @@ class Office {
 
     static mapping = {
         version false
+        id sqlType:"serial"
     }
 
     String toString(){

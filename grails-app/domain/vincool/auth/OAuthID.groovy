@@ -36,6 +36,8 @@ class OAuthID implements Serializable {
     static mapping = {
         provider    index: "identity_idx"
         accessToken index: "identity_idx"
+        id sqlType:"serial"
+
     }
 
     String toString(){

@@ -12,6 +12,7 @@ class Instructor extends SecUser{
 
     static mapping = {
         version false
+        id sqlType:"serial"
     }
 
     String toString(){

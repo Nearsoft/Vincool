@@ -98,6 +98,8 @@ class SecUserSecRole implements Serializable {
 	static mapping = {
 		secUser unique: 'secRole'
 		version false
+		id sqlType:"serial"
+
 	}
 
 	String toString(){
