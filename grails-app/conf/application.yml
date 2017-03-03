@@ -110,7 +110,7 @@ environments:
 
     test:
         dataSource:
-            dbCreate: validate
+            dbCreate: none
             url: jdbc:postgresql://localhost:5432/vincool
             driverClassName: org.postgresql.Driver
             dialect: org.hibernate.dialect.PostgreSQLDialect

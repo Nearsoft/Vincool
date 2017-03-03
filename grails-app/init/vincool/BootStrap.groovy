@@ -7,7 +7,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 class BootStrap {
-
+    def grailsApplication
     def init = { servletContext ->
         environments {
             development {
@@ -58,6 +58,60 @@ class BootStrap {
             }
         }
 
+        for(domainClass in grailsApplication.domainClasses) {
+            if (!NotificationService.Rateable.isAssignableFrom(domainClass.clazz)) {
+                continue
+            }
+
+            domainClass.clazz.metaClass {
+
+                addRating { user ->
+                    if(delegate.id == null) throw println("You must save the entity [${delegate}] before calling addToFavouritesOf")
+
+                    def userClass = user.class.name
+                    if (userClass.contains('_$$_javassist')) {
+                        userClass -= '_$$_javassist'
+                    }
+
+                    //check if delegate already added into favourites
+                    def userId = user.id
+                    def alreadyIntoFavourite=Rating.find("from Favourite as f where f.userId=? and f.userClass=? and f.favouriteId=? and favouriteClass=?", [userId,userClass,delegate.id,delegate.class.name])
+
+                    if(alreadyIntoFavourite){
+                        println "Already Into Favourites"
+                    }else{
+                        def f = new Rating(userId:user.id, userClass:userClass, favouriteId:delegate.id, favouriteClass:delegate.class.name)
+                        if(!f.save()) {
+                            throw println("Cannot create favourite for arguments $user, they are invalid.")
+                        }
+                    }
+                    return delegate
+                }
+
+                getRatings = {->
+                    def instance = delegate
+                    if(instance.id != null) {
+                        return Rating.findAll("from Favourite as f where f.userId=? and f.userClass=?", [instance.id,instance.class.name])
+                    } else {
+                        return Collections.EMPTY_LIST
+                    }
+                }
+
+                removeRating { user ->
+                    if(delegate.id == null) throw println("You must save the entity [${delegate}] before calling removeFromFavouritesOf")
+                    def userClass = user.class.name
+                    if (favouriteClass.contains('_$$_javassist')) {
+                        favouriteClass -= '_$$_javassist'
+                    }
+
+                    def userId = user.id
+
+                    def favouriteToRemove=Rating.find("from Favourite as f where f.userId=? and f.userClass=? and f.favouriteId=? and favouriteClass=?", [userId,userClass,delegate.id,delegate.class.name])
+
+                    favouriteToRemove.delete()
+                }
+            }
+        }
     }
 
     def destroy = {
