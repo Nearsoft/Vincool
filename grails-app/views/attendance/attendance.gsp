@@ -17,7 +17,7 @@
 
                     <g:each in="${enrollments}">
                         <tr>
-                            <td>${it.attendee.name}</td>
+                            <td>${it.attendee.name}/${it.attendee.email}</td>
                             <td>
                                 <div class="switch">
                                     <div class="onoffswitch">
