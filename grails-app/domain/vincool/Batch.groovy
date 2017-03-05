@@ -1,6 +1,6 @@
 package vincool
 
-class Batch {
+class Batch implements Rateable {
 
     String edition
     Boolean isActive

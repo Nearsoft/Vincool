@@ -1,6 +1,6 @@
 package vincool
 
-class Resource {
+class Resource implements Rateable{
 
     String name
     String url

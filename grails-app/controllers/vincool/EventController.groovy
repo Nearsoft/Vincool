@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity
 import static org.springframework.http.HttpStatus.OK
 
 @Secured(['ROLE_ADMIN', 'ROLE_INSTRUCTOR'])
-class EventController implements Rateable {
+class EventController{
 
     def springSecurityService
     def roleUserService

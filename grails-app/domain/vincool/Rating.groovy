@@ -7,9 +7,11 @@ class Rating {
     int rating
     Long entityId
     String entityClass
+    String comment
     static belongsTo = [user: SecUser]
     static constraints = {
         id sqlType:"serial"
+        comment nullable: true
     }
 
     def getEntity() {
