@@ -50,7 +50,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="/login" class="btn btn-primary">Go back</a>
+                    <a href="/login" class="btn btn-primary">Regresar</a>
                 </div>
             </div>
             <br/>
