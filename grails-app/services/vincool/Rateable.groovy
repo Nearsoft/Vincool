@@ -10,7 +10,9 @@ trait Rateable {
         def alreadyIntoRated = Rating.find("from Rating as r where r.user=? and r.entityId=? and r.entityClass=?", [user, this.id, this.class.name])
 
         if (alreadyIntoRated) {
-            println "Already Into Favourites"
+            alreadyIntoRated.rating = ratingValue
+            alreadyIntoRated.comment = comment
+            alreadyIntoRated.save(failOnError: true)
         } else {
             def f = new Rating(user: user, entityId: this.id, entityClass: this.class.name, rating: ratingValue, comment: comment)
             f.save(failOnError: true)

@@ -8,18 +8,24 @@ import static org.springframework.http.HttpStatus.NOT_FOUND
 
 class RatingController {
 
-    static allowedMethods = [rate: ['PUT', 'POST']]
+    static allowedMethods = [rate: ['PUT', 'POST'], myRate: 'GET']
 
-    def nameMapping = ['event': Event, 'resource': Resource, 'attendee': Attendee, 'instructor': Instructor, 'batch': Batch]
+    def nameMapping = ['Event': Event, 'Resource': Resource, 'Attendee': Attendee, 'Instructor': Instructor, 'Batch': Batch]
 
     def rate() {
-        def instance = nameMapping[params.entity]?.get(params.id)
+        def jsonObject = request.JSON
+        println(jsonObject)
+        def instance = nameMapping[jsonObject.entity]?.get(jsonObject.id)
         if(instance) {
-            instance.addRating(session.userDetails, params.rate)
+            instance.addRating(session.userDetails, jsonObject.rate, jsonObject.comment)
             respond instance.getRating(session.userDetails), model: []
         } else {
             render status: NOT_FOUND
         }
     }
 
+    def myRate(Long id){
+        def instance = nameMapping[params.entity]?.get(id)
+        respond instance.getRating(session.userDetails)
+    }
 }
