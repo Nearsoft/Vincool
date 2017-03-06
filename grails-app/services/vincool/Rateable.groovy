@@ -10,7 +10,7 @@ trait Rateable {
         def alreadyIntoRated = Rating.find("from Rating as r where r.user=? and r.entityId=? and r.entityClass=?", [user, this.id, this.class.name])
 
         if (alreadyIntoRated) {
-            alreadyIntoRated.rating = ratingValue
+            alreadyIntoRated.rating = ratingValue as Integer
             alreadyIntoRated.comment = comment
             alreadyIntoRated.save(failOnError: true)
         } else {
