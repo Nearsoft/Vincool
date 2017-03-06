@@ -110,17 +110,21 @@ environments:
 
     test:
         dataSource:
-            dbCreate: validate
+            dbCreate: update
             url: jdbc:postgresql://localhost:5432/vincool
             driverClassName: org.postgresql.Driver
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-            username: vincool
-            password: vincool
+            username: postgres
+            password: password
 
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:postgresql://localhost:5432/vincool
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+            driverClassName: org.postgresql.Driver
+            url: jdbc:postgresql://localhost:5432/vincool?sslmode=require
+            username: postgres
+            password: postgres
+
             properties:
                 jmxEnabled: true
                 initialSize: 5
