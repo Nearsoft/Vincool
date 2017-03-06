@@ -14,25 +14,29 @@ class LoginController {
     def springSecurityOauth2BaseService
     def vincoolOAuthService
 
-    def index(){
+    def index() {
         render(view: "login")
     }
 
-    def signin(){
+    def signin() {
 
         OAuth2SpringToken token = (OAuth2SpringToken) session[SPRING_SECURITY_OAUTH_TOKEN]
 
         def jsonSlurper = new JsonSlurper()
-        Map<String, String> parts = jsonSlurper.parseText(token.credentials )
+        Map<String, String> parts = jsonSlurper.parseText(token.credentials)
         String accesToken = parts.get("access_token")
 
         Google google = new GoogleTemplate(accesToken);
-        def userInfo =  google.userOperations().userInfo
+        def userInfo = google.userOperations().userInfo
 
-        def user = vincoolOAuthService.createUser( userInfo, token.providerName, accesToken )
+        def user = vincoolOAuthService.createUser(userInfo, token.providerName, accesToken)
         springSecurityOauth2BaseService.updateOAuthToken(token, user)
         session.removeAttribute SPRING_SECURITY_OAUTH_TOKEN
         SecurityContextHolder.context.authentication = token
         redirect(controller: "home")
+    }
+
+    def privacy() {
+        render(view: "/privacyPolicy.gsp")
     }
 }
