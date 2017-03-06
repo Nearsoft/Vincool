@@ -19,25 +19,25 @@
 
                             <div class="text-center article-title">
                                 <h1>
-                                    Information Collection and Use
+                                    Recolección y uso de información
                                 </h1>
                             </div>
                             <br/>
 
                             <p>
-                                Nearsoft, Inc is the sole owner of the information collected on this web site.
-                                We collect a minimal amount of information from visitors to our site only when they provide it.
-                                Information provided to Nearsoft will be used solely for the purpose of helping you, our visitors and clients.
-                                We may wish to communicate with you, so we may use some of the information you provide to market specific products and services.
-                                This information will never be sold to or shared with any third party for any purpose whatsoever.
+                                Nearsoft, Inc. es el único propietario de la información recolectada en este sitio. Recolectamos
+                                una mínima cantidad de información de los visitantes a este sitio, solo cuando ellos proveen el acceso.
+                                Información provista a este sitio será usada únicamente con el proósito de ayudar al usuario,
+                                nuestros visitantes y clientes. Te comunicamos que podríamos hacer uso de alguna de los datos que provees a este sitio
+                                con el fin de promover productos y servicios en específico. La información recolectada nunca será vendida o compartida a terceros por ningún motivo.
                             </p>
 
                             <p>
-                                As you browse nsapprentice.herokuapp.com, advertising cookies may be placed on your computer so that we can understand what you are interested in.
+                                Mientras navegas en este sitio, algunas cookies podrían ser almacenadas en tu computadora, de esa forma podemos entender en qué estás interesado.
                             </p>
 
                             <p>
-                                If you have any questions or concerns regarding this policy, please contact <a
+                                Si tienes preguntas o comentarios acerca de este Aviso de Privacidad, por favor escribe a <a
                                     href="mailto:privacy-policy@nearsoft.com">privacy-policy@nearsoft.com</a>
                             </p>
                             <hr>

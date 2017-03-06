@@ -2,9 +2,11 @@ package vincool
 
 import grails.plugin.springsecurity.oauth2.token.OAuth2SpringToken
 import groovy.json.JsonSlurper
+import org.grails.web.gsp.io.GrailsConventionGroovyPageLocator
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.social.google.api.Google
 import org.springframework.social.google.api.impl.GoogleTemplate
+import org.springframework.web.servlet.support.RequestContextUtils
 import vincool.auth.SecUser
 
 class LoginController {
@@ -13,6 +15,9 @@ class LoginController {
 
     def springSecurityOauth2BaseService
     def vincoolOAuthService
+    def GrailsConventionGroovyPageLocator groovyPageLocator
+
+    LoginController() {}
 
     def index() {
         render(view: "login")
@@ -37,6 +42,19 @@ class LoginController {
     }
 
     def privacy() {
-        render(view: "/privacyPolicy.gsp")
+
+        def locale = RequestContextUtils.getLocale(request).getLanguage()
+        def privacyPolicyTemplateName = "/privacyPolicy"
+        def localTemplate = privacyPolicyTemplateName + "_" + locale
+
+        def located = groovyPageLocator.findView(localTemplate)
+        print localTemplate
+        if (located != null) {
+            groovyPageLocator.findView(localTemplate)
+            render(view: localTemplate)
+        } else {
+            render(view: privacyPolicyTemplateName)
+        }
+
     }
 }

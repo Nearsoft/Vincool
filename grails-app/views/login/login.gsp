@@ -42,7 +42,7 @@
                 </form>
                 <br/>
                 <p>
-                    <g:message code='login.apprentice.privacypolicy' default="By clicking Sign in you agree to the"/>
+                    <g:message code='login.apprentice.agree' default="By clicking Sign in you agree to the"/>
                     <a href="/login/privacy"><g:message code='privacypolicy' default="Privacy Policy"/></a>
                 </p>
                 <!--a class="btn btn-block btn-social btn-facebook">
