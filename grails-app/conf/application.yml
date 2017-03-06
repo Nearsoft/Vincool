@@ -141,6 +141,7 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
 grails:
+    serverURL: ${grails.serverurl:https://nsapprentice.herokuapp.com}
     plugin:
         springsecurity:
             auth:
@@ -153,8 +154,8 @@ grails:
                 providers:
                     google:
                         failureUri: '/notFound'
-                        api_key: '314421498739-r0pbci40botjh0pmgb3pob5q0obr37r0.apps.googleusercontent.com'
-                        api_secret: 'eOc-t2xZoN19OoZono0K1uLc'
+                        api_key: ${google.apikey:'314421498739-r0pbci40botjh0pmgb3pob5q0obr37r0.apps.googleusercontent.com'}
+                        api_secret: ${google.apisecret:'eOc-t2xZoN19OoZono0K1uLc}
                         scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
         cloudinary:
             apiKey: '675626252898869'
