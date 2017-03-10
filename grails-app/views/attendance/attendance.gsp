@@ -10,6 +10,7 @@
                     <thead>
                     <tr>
                         <th>Attendee's name</th>
+                        <th>Attendee's email</th>
                         <th>Attendance</th>
                     </tr>
                     </thead>
@@ -17,7 +18,8 @@
 
                     <g:each in="${enrollments}">
                         <tr>
-                            <td>${it.attendee.name}/${it.attendee.email}</td>
+                            <td>${it.attendee.name}</td>
+                            <td>${it.attendee.email}</td>
                             <td>
                                 <div class="switch">
                                     <div class="onoffswitch">

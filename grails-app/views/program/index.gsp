@@ -26,7 +26,7 @@
                                         <p>${raw(it.description)}
                                         </p>
                                         <g:link controller="event" action="show" id="${it.id}"
-                                                class="btn btn-xs btn-primary">Mas informacion</g:link>
+                                                class="btn btn-xs btn-primary">Mas información</g:link>
                                         <span class="vertical-date"><g:formatDate date="${it.date}"/></span>
                                     </div>
                                 </div>
