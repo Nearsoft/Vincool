@@ -65,6 +65,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <asset:image src="landing_page/img/nearsoft.png"></asset:image>
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
@@ -73,7 +74,6 @@
                     <li><a href="/#program">El Programa</a></li>
                     <li><a href="/#team">Los Mentores</a></li>
                     <li><a href="/#next">Próximas clases</a></li>
-                    <li><a href="/#testimonials">Testimonios</a></li>
                     <li><g:link controller="calendar">Calendario</g:link></li>
                     <sec:ifNotLoggedIn><li><a class="page-scroll" href="/login">Login</a></li></sec:ifNotLoggedIn>
                 </ul>

@@ -27,7 +27,7 @@
             <div class="container">
             </div>
             <!-- Set background for slide in css -->
-            <div class="header-back one"></div>
+            <div class="header-back two"></div>
 
         </div>
         <!--div class="item">
