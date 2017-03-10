@@ -5,9 +5,9 @@ class RatingTagLib {
     static namespace = "rate"
 
     def avg = {attrs, body->
-        out<<'<div class="rate-summary-container rateable" data-id="'+attrs.entity.id+'" data-name="'+attrs.name+'"'
+        out<<'<div style="display: inline;" class="rate-summary-container rateable" data-id="'+attrs.entity.id+'" data-name="'+attrs.name+'"'
         out<<'data-entity="'+attrs.entity.getClass().getSimpleName()+'" >'
-        out<<'<input value="'+attrs.entity.avgRating+'" class="rate-summary">'
+        out<<'<input id="'+attrs.entity.getClass().getSimpleName()+attrs.entity.id+'" value="'+attrs.entity.avgRating+'" class="rate-summary" data-size="xs"/>'
         out<<'</div>'
 
     }
@@ -27,7 +27,7 @@ class RatingTagLib {
                     </div>
 
                     <div class="modal-body">
-                        <input id="ratingValue" type="text" class="rating" data-min="0" data-max="5" data-step="1"/>
+                        <input id="ratingValue" type="text" class="rating" data-min="0" data-max="5" data-step="1"  data-size="xs"/>
                         <input id="ratingId" type="hidden"/>
                         <input id="ratingEntity" type="hidden"/>
 
@@ -84,8 +84,9 @@ class RatingTagLib {
                         data: JSON.stringify(payload),
                         contentType: "application/json",
                         dataType: "json"
-                    }).done(function () {
-                        console.log("success");
+                    }).done(function (data) {
+                        $("#"+data.entity+data.id).rating('update', data.avg);
+                        console.log("success");                        
                     })
                         .fail(function () {
                             console.log("error");

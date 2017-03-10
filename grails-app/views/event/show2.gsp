@@ -138,7 +138,7 @@
                     <div class="col-lg-4 col-md-4 col-xs-12">
                         <h4><g:message code="default.instructor.label" default="Instructor"/></h4>
 
-                        <p>${event.instructor.name}</p>
+                        <p style="display: inline;">${event.instructor.name}</p> <sec:ifAllGranted roles='ROLE_STUDENT'><rate:avg entity="${event.instructor}" name="${event.instructor.name}"/></sec:ifAllGranted>
                         <ul class="list-inline social-icon">
                             <g:if test="${event.instructor.twitter}">
                                 <li><a target="_blank"
@@ -162,9 +162,7 @@
                                    href="mailto:${event.instructor.email}"><i class="fa fa-envelope"></i></a>
                             </li>
                         </ul>
-                        <sec:ifAllGranted roles='ROLE_STUDENT'>
-                            <rate:avg entity="${event.instructor}" name="${event.instructor.name}"/>
-                        </sec:ifAllGranted>
+
                         <br/>
                         <h4 style="margin: 10px 0px 5px;"
                             class="product-main-price"><g:message code="default.when.label" default="When?"/></h4>

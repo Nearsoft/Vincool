@@ -1,5 +1,6 @@
 package vincool
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -18,7 +19,9 @@ class RatingController {
         def instance = nameMapping[jsonObject.entity]?.get(jsonObject.id)
         if(instance) {
             instance.addRating(session.userDetails, jsonObject.rate, jsonObject.comment)
-            respond instance.getRating(session.userDetails), model: []
+            instance.getRating(session.userDetails)
+            def json = [avg: instance.getAvgRating(), entity: instance.getClass().getSimpleName(), id: instance.id]
+            render json as JSON
         } else {
             render status: NOT_FOUND
         }
