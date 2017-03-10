@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 import org.apache.commons.io.FilenameUtils
 import org.springframework.http.ResponseEntity
 
+import java.time.LocalDate
 
 import static org.springframework.http.HttpStatus.OK
 
@@ -57,7 +58,7 @@ class EventController{
     def show(Long id) {
 
         def event = Event.get(id)
-
+        boolean expired = LocalDate.now().isAfter(event.date)
         if (!springSecurityService.loggedIn) {
 
             if (event == null) {
@@ -65,7 +66,7 @@ class EventController{
                 return
             }
 
-            render([view: "show2", model: [event: event, isEnrolled: false]])
+            render([view: "show2", model: [event: event, isEnrolled: false, expired:expired]])
 
         } else if (roleUserService.currentUserAnAttendee) {
 
@@ -73,10 +74,10 @@ class EventController{
                 redirect(controller: "calendar", action: "index")
                 return
             }
+            Enrollment enrollment =  Enrollment.findByAttendeeAndEvent(springSecurityService.currentUser, event)
+            def isEnrolled = enrollment != null
 
-            def isEnrolled = Enrollment.findByAttendeeAndEvent(springSecurityService.currentUser, event) != null
-
-            render([view: "show2", model: [event: event, isEnrolled: isEnrolled]])
+            render([view: "show2", model: [event: event, isEnrolled: isEnrolled, expired: expired, enrollment: enrollment]])
 
         } else {
 

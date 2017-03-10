@@ -76,15 +76,19 @@
                                 <g:set var="enrollButtonClass" value="${"btn pull-right btn-primary"}"/>
                                 <g:set var="enrollFormAction" value="${"enroll"}"/>
                             </g:else>
-
-                            <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
-                                    id="${event.id}" method="POST">
-                                <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
-                                                value="${enrollButtonMessage}"
-                                                style="margin: 10px 0px 5px; width: 100%;"/>
-                            </g:form>
-
-                            <rate:avg entity="${event}" name="${event.eventCategory.subCategory}"/>
+                            <g:if test="${expired}">
+                                <g:if test="${enrollment?.attendance}">
+                                    <rate:avg entity="${event}" name="${event.eventCategory.subCategory}"/>
+                                </g:if>
+                            </g:if>
+                            <g:else>
+                                <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
+                                        id="${event.id}" method="POST">
+                                    <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
+                                                    value="${enrollButtonMessage}"
+                                                    style="margin: 10px 0px 5px; width: 100%;"/>
+                                </g:form>
+                            </g:else>
 
                         </sec:ifAllGranted>
 
@@ -93,12 +97,14 @@
                                    value="${message(code: "default.enroll.button.label", default: "Enroll in this event")}"/>
                             <g:set var="enrollButtonClass" value="${"btn pull-right btn-primary"}"/>
                             <g:set var="enrollFormAction" value="${"enroll"}"/>
-                            <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
-                                    id="${event.id}" method="POST">
-                                <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
-                                                value="${enrollButtonMessage}"
-                                                style="margin: 10px 0px 5px; width: 100%;"/>
-                            </g:form>
+                            <g:if test="${!expired}">
+                                <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
+                                        id="${event.id}" method="POST">
+                                    <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
+                                                    value="${enrollButtonMessage}"
+                                                    style="margin: 10px 0px 5px; width: 100%;"/>
+                                </g:form>
+                            </g:if>
                         </sec:ifNotLoggedIn>
                         <div id="share" class="text-left">
 
@@ -138,7 +144,16 @@
                     <div class="col-lg-4 col-md-4 col-xs-12">
                         <h4><g:message code="default.instructor.label" default="Instructor"/></h4>
 
-                        <p style="display: inline;">${event.instructor.name}</p> <sec:ifAllGranted roles='ROLE_STUDENT'><rate:avg entity="${event.instructor}" name="${event.instructor.name}"/></sec:ifAllGranted>
+                        <p style="display: inline;">${event.instructor.name}</p>
+                        <sec:ifAllGranted
+                                roles='ROLE_STUDENT'>
+                            <g:if test="${expired}">
+                                <g:if test="${enrollment?.attendance}">
+                                    <rate:avg entity="${event.instructor}"
+                                              name="${event.instructor.name}"/>
+                                </g:if>
+                            </g:if>
+                        </sec:ifAllGranted>
                         <ul class="list-inline social-icon">
                             <g:if test="${event.instructor.twitter}">
                                 <li><a target="_blank"

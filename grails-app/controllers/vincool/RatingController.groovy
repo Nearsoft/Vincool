@@ -15,7 +15,6 @@ class RatingController {
 
     def rate() {
         def jsonObject = request.JSON
-        println(jsonObject)
         def instance = nameMapping[jsonObject.entity]?.get(jsonObject.id)
         if(instance) {
             instance.addRating(session.userDetails, jsonObject.rate, jsonObject.comment)
