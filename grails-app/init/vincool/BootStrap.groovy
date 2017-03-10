@@ -57,7 +57,7 @@ class BootStrap {
                 new Enrollment(event: event1, attendee: attendee2, attendance: false).save()
             }
         }
-        
+
     }
 
     def destroy = {

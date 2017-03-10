@@ -12,14 +12,10 @@ trait Rateable {
         if (alreadyIntoRated) {
             alreadyIntoRated.rating = ratingValue as Integer
             alreadyIntoRated.comment = comment
-            println(alreadyIntoRated.validate())
             alreadyIntoRated.save(failOnError: true)
-            println(alreadyIntoRated)
         } else {
             def f = new Rating(user: user, entityId: this.id, entityClass: this.class.name, rating: ratingValue, comment: comment)
-            println(f.validate())
             f.save(failOnError: true)
-            println(f)
         }
         return this
     }
