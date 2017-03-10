@@ -57,71 +57,7 @@ class BootStrap {
                 new Enrollment(event: event1, attendee: attendee2, attendance: false).save()
             }
         }
-
-        for (domainClass in grailsApplication.domainClasses) {
-            if (!Rateable.isAssignableFrom(domainClass.clazz)) {
-                continue
-            }
-/*
-            domainClass.clazz.metaClass {
-
-                addRating { user, ratingValue ->
-                    if (delegate.id == null) throw println("You must save the entity [${delegate}] before calling addToFavouritesOf")
-
-                    //check if delegate already added into favourites
-                    def alreadyIntoRated = Rating.find("from Rating as r where r.user=? and r.entityId=? and r.entityClass=?", [user, delegate.id, delegate.class.name])
-
-                    if (alreadyIntoRated) {
-                        println "Already Into Favourites"
-                    } else {
-                        def f = new Rating(user: user, entityId: delegate.id, entityClass: delegate.class.name, rating: ratingValue)
-                        if (!f.save()) {
-                            throw println("Cannot create favourite for arguments $user, they are invalid.")
-                        }
-                    }
-                    return delegate
-                }
-
-                getRatings = { ->
-                    def instance = delegate
-                    if (instance.id != null) {
-                        return Rating.findAll("from Rating as r where r.entityId=? and r.entityClass=?", [instance.id, instance.class.name])
-                    } else {
-                        return Collections.EMPTY_LIST
-                    }
-                }
-
-                removeRating { user ->
-                    if (delegate.id == null) throw println("You must save the entity [${delegate}] before calling removeFromFavouritesOf")
-                    def userClass = user.class.name
-                    if (entityClass.contains('_$$_javassist')) {
-                        entityClass -= '_$$_javassist'
-                    }
-
-
-                    def toRemove = Rating.find("from Rating as r where r.user=? and r.entityId=? and r.entityClass=?", [user, delegate.id, delegate.class.name])
-
-                    toRemove.delete()
-                }
-            }*/
-        }
-
-        for (domainClass in grailsApplication.domainClasses) {
-            if (!Rateable.isAssignableFrom(domainClass.clazz)) {
-                continue
-            }
-
-            domainClass.clazz.metaClass {
-
-
-            }
-        }
-        for (controller in grailsApplication.controllerClasses) {
-            if (!Rateable.isAssignableFrom(controller.clazz)) {
-                continue
-            }
-
-        }
+        
     }
 
     def destroy = {
