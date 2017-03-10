@@ -2,7 +2,7 @@ package vincool
 
 import vincool.auth.SecUser
 
-class Instructor extends SecUser{
+class Instructor extends SecUser implements Rateable{
 
     Boolean isPublic = false
 

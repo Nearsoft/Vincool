@@ -2,7 +2,7 @@ package vincool
 
 import vincool.auth.SecUser
 
-class Attendee extends SecUser{
+class Attendee extends SecUser implements Rateable{
 
     Integer age
     String school
