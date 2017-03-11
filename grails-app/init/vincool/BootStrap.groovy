@@ -7,14 +7,14 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 class BootStrap {
-
+    def grailsApplication
     def init = { servletContext ->
         environments {
             development {
                 ['ROLE_STUDENT', 'ROLE_INSTRUCTOR', 'ROLE_ADMIN'].each {
-                    if (! SecRole.findByAuthority(it)){
+                    if (!SecRole.findByAuthority(it)) {
                         def secRole = new SecRole(it).save()
-                        if(it == 'ROLE_ADMIN') {
+                        if (it == 'ROLE_ADMIN') {
                             def secUser = new SecUser(username: "PedroAdmin", password: "12345abcd", email: "eladmin@gmail.com").save()
                             SecUserSecRole.create(secUser, secRole)
                         }
@@ -22,13 +22,13 @@ class BootStrap {
                 }
                 def attendee1 = new Attendee(username: "luisdaniel", password: "pass", email: "lalducin@nearsoft.com", firstName: "Luis Daniel", lastName: "Alducin", age: 22, school: "ESCOM", currentCompany: "Nearsoft").save()
                 def attendee2 = new Attendee(username: "erikueen", password: "pass", email: "ereyna@nearsoft.com", firstName: "Erick", lastName: "Reyna", age: 23, school: "UPVT", currentCompany: "Nearsoft").save()
-                new Attendee(username: "jlozano", password: "pass",  email: "jlozano@nearsoft.com", firstName: "Javier", lastName: "Lozano", age: 21, school: "UPIITA", currentCompany: "Nearsoft").save()
-                new Attendee(username: "aibarra", password: "pass", email: "aibarra@nearsoft.com", firstName: "Antonio", lastName:  "Ibarra", age: 19, school: "ESCOM", currentCompany: "Nearsoft").save()
+                new Attendee(username: "jlozano", password: "pass", email: "jlozano@nearsoft.com", firstName: "Javier", lastName: "Lozano", age: 21, school: "UPIITA", currentCompany: "Nearsoft").save()
+                new Attendee(username: "aibarra", password: "pass", email: "aibarra@nearsoft.com", firstName: "Antonio", lastName: "Ibarra", age: 19, school: "ESCOM", currentCompany: "Nearsoft").save()
 
-                def cdmx = new Office(officeCode: "CDMX", name: "Ciudad de México", location: "San Luis Potosí 196 int. 401 Col. Roma Norte Del. Cuauhtémoc Ciudad de México 06700", phoneNumber:  "+52 (55) 6388-6650").save()
-                def hmo = new Office(officeCode: "HMO", name: "Hermosillo, Sonora", location: "Blvd. Antonio Quiroga 21 Col. El Llano Hermosillo, Sonora, México 83210", phoneNumber:  "+52 (662) 216-7401").save()
+                def cdmx = new Office(officeCode: "CDMX", name: "Ciudad de México", location: "San Luis Potosí 196 int. 401 Col. Roma Norte Del. Cuauhtémoc Ciudad de México 06700", phoneNumber: "+52 (55) 6388-6650").save()
+                def hmo = new Office(officeCode: "HMO", name: "Hermosillo, Sonora", location: "Blvd. Antonio Quiroga 21 Col. El Llano Hermosillo, Sonora, México 83210", phoneNumber: "+52 (662) 216-7401").save()
 
-                def instructor1 = new Instructor(username: "igomez", password: "pass", email: "igomez@nearsoft.com", firstName: "Israel", lastName: "Gómez", name:"Israel Gomez").save()
+                def instructor1 = new Instructor(username: "igomez", password: "pass", email: "igomez@nearsoft.com", firstName: "Israel", lastName: "Gómez", name: "Israel Gomez").save()
 
                 def eventCategory1 = new EventCategory(category: EventCategory.Category.APPRENTICE, subCategory: "Introductory Topics", color: "orange").save()
                 def eventCategory2 = new EventCategory(category: EventCategory.Category.APPRENTICE, subCategory: "Data Structures and Big O Notation I", color: "orange").save()
@@ -36,7 +36,7 @@ class BootStrap {
                 def eventCategory4 = new EventCategory(category: EventCategory.Category.APPRENTICE, subCategory: "Data Structures and Big O Notation II", color: "orange").save()
 
                 def apprenticeCDMX_2016B = new Batch(edition: "Apprentice CDMX 2016 B", isActive: false).save()
-                def event1 = new Event(type: "Practical", date: LocalDate.parse("2016-11-10"), time: LocalTime.now(), instructor: instructor1, office: cdmx, eventCategory: eventCategory1,  description: "VCS and C, C++, Java", batch: apprenticeCDMX_2016B).save()
+                def event1 = new Event(type: "Practical", date: LocalDate.parse("2016-11-10"), time: LocalTime.now(), instructor: instructor1, office: cdmx, eventCategory: eventCategory1, description: "VCS and C, C++, Java", batch: apprenticeCDMX_2016B).save()
                 new Event(type: "Practical", date: LocalDate.parse("2016-11-17"), time: LocalTime.now(), instructor: instructor1, office: cdmx, eventCategory: eventCategory2, description: "Arrays, lists and sets", batch: apprenticeCDMX_2016B).save()
                 new Event(type: "Theoretical", date: LocalDate.parse("2016-11-24"), time: LocalTime.now(), instructor: instructor1, office: cdmx, eventCategory: eventCategory3, description: "Single Responsibility Principle", batch: apprenticeCDMX_2016B).save()
 
@@ -50,7 +50,7 @@ class BootStrap {
                 new Event(type: "Practical", date: LocalDate.parse("2017-01-12"), time: LocalTime.now(), instructor: instructor1, office: hmo, eventCategory: eventCategory2, description: "Arrays and Lists", batch: apprenticeHMO_2017A).save()
                 new Event(type: "Theoretical", date: LocalDate.parse("2017-01-19"), time: LocalTime.now(), instructor: instructor1, office: hmo, eventCategory: eventCategory4, description: "Sets and Hash Tables", batch: apprenticeHMO_2017A).save()
 
-                new Resource(name:"Slides", url: "http://www.slides.com", description: "Slides about Arrays and Lists", event: event1).save()
+                new Resource(name: "Slides", url: "http://www.slides.com", description: "Slides about Arrays and Lists", event: event1).save()
                 new Resource(name: "Repo", url: "http://www.repo.com", description: "Repo with exercises about Arrays and Lists", event: event1).save()
 
                 new Enrollment(event: event1, attendee: attendee1, attendance: false).save()

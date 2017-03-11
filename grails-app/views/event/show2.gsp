@@ -31,6 +31,8 @@
         </g:else>
 
         <meta name="twitter:card" content="photo">
+        <asset:link rel="stylesheet" type="text/css" href="rating/star-rating.min.css"/>
+        <asset:javascript src="plugins/jssocials/jssocials.min.js"/>
     </content>
     <content tag="boxTitle">
         <h3><g:message code="event.detail.label" default="Event Detail"/></h3>
@@ -74,13 +76,20 @@
                                 <g:set var="enrollButtonClass" value="${"btn pull-right btn-primary"}"/>
                                 <g:set var="enrollFormAction" value="${"enroll"}"/>
                             </g:else>
+                            <g:if test="${expired}">
+                                <g:if test="${enrollment?.attendance}">
+                                    <rate:avg entity="${event}" name="${event.eventCategory.subCategory}"/>
+                                </g:if>
+                            </g:if>
+                            <g:else>
+                                <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
+                                        id="${event.id}" method="POST">
+                                    <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
+                                                    value="${enrollButtonMessage}"
+                                                    style="margin: 10px 0px 5px; width: 100%;"/>
+                                </g:form>
+                            </g:else>
 
-                            <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
-                                    id="${event.id}" method="POST">
-                                <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
-                                                value="${enrollButtonMessage}"
-                                                style="margin: 10px 0px 5px; width: 100%;"/>
-                            </g:form>
                         </sec:ifAllGranted>
 
                         <sec:ifNotLoggedIn>
@@ -88,16 +97,17 @@
                                    value="${message(code: "default.enroll.button.label", default: "Enroll in this event")}"/>
                             <g:set var="enrollButtonClass" value="${"btn pull-right btn-primary"}"/>
                             <g:set var="enrollFormAction" value="${"enroll"}"/>
-                            <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
-                                    id="${event.id}" method="POST">
-                                <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
-                                                value="${enrollButtonMessage}"
-                                                style="margin: 10px 0px 5px; width: 100%;"/>
-                            </g:form>
+                            <g:if test="${!expired}">
+                                <g:form name="enrollForm" controller="attendee" action="${enrollFormAction}"
+                                        id="${event.id}" method="POST">
+                                    <g:submitButton class="${enrollButtonClass}" name="enrollButton" id="enrollButton"
+                                                    value="${enrollButtonMessage}"
+                                                    style="margin: 10px 0px 5px; width: 100%;"/>
+                                </g:form>
+                            </g:if>
                         </sec:ifNotLoggedIn>
                         <div id="share" class="text-left">
 
-                            <asset:javascript src="plugins/jssocials/jssocials.min.js"/>
                             <script>
                                 $("#share").jsSocials({
                                     text: "${shareText}",
@@ -134,7 +144,16 @@
                     <div class="col-lg-4 col-md-4 col-xs-12">
                         <h4><g:message code="default.instructor.label" default="Instructor"/></h4>
 
-                        <p>${event.instructor.name}</p>
+                        <p style="display: inline;">${event.instructor.name}</p>
+                        <sec:ifAllGranted
+                                roles='ROLE_STUDENT'>
+                            <g:if test="${expired}">
+                                <g:if test="${enrollment?.attendance}">
+                                    <rate:avg entity="${event.instructor}"
+                                              name="${event.instructor.name}"/>
+                                </g:if>
+                            </g:if>
+                        </sec:ifAllGranted>
                         <ul class="list-inline social-icon">
                             <g:if test="${event.instructor.twitter}">
                                 <li><a target="_blank"
@@ -158,6 +177,7 @@
                                    href="mailto:${event.instructor.email}"><i class="fa fa-envelope"></i></a>
                             </li>
                         </ul>
+
                         <br/>
                         <h4 style="margin: 10px 0px 5px;"
                             class="product-main-price"><g:message code="default.when.label" default="When?"/></h4>
@@ -210,6 +230,9 @@
                                         <td>${resource.name}</td>
                                         <td>${resource.description}</td>
                                         <td><a class="btn btn-primary btn-outline" target="_blank" href="${resource.url}">Ver</a></td>
+                                        <sec:ifAllGranted roles='ROLE_STUDENT'>
+                                            <td><rate:avg entity="${resource}" name="${resource.name}"/></td>
+                                        </sec:ifAllGranted>
                                     </tr>
                                 </g:each>
 
@@ -238,6 +261,8 @@
                 </div>
             </div>
         </section>
+        <rate:modal/>
+
     </content>
     <content tag="breadcrumbs">
     </content>
