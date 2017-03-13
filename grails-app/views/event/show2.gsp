@@ -142,6 +142,13 @@
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-xs-12">
+                        <g:if test="${!expired && event.enrollments.size() > 0}">
+                            <h4><g:message code="default.attendees.label" default="Attendees"/></h4>
+
+                            <p><g:message code="default.attendees.invitation.label"
+                                          args="${event.enrollments.size()}"/></p>
+                            <br/>
+                        </g:if>
                         <h4><g:message code="default.instructor.label" default="Instructor"/></h4>
 
                         <p style="display: inline;">${event.instructor.name}</p>
@@ -229,7 +236,8 @@
                                     <tr>
                                         <td>${resource.name}</td>
                                         <td>${resource.description}</td>
-                                        <td><a class="btn btn-primary btn-outline" target="_blank" href="${resource.url}">Ver</a></td>
+                                        <td><a class="btn btn-primary btn-outline" target="_blank"
+                                               href="${resource.url}">Ver</a></td>
                                         <sec:ifAllGranted roles='ROLE_STUDENT'>
                                             <td><rate:avg entity="${resource}" name="${resource.name}"/></td>
                                         </sec:ifAllGranted>

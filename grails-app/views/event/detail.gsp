@@ -50,14 +50,7 @@
                             No attendees for the moment
                         </g:if>
                         <g:else>
-                            <g:each in="${eventDetails.attendeesPictures}" var="url" >
-                                <g:if test="${url == null}">
-                                    <asset:image src="default_user.svg" class="img-circle" />
-                                </g:if>
-                                <g:else>
-                                    <img alt="image" class="img-circle" src="${url}">
-                                </g:else>
-                            </g:each>
+                            ${eventDetails.enrollments.size()} Enrollments
                         </g:else>
                     </dd>
                 </dl>
