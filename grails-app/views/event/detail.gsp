@@ -70,9 +70,19 @@
                     <dt>Assistance Percentage:</dt>
                     <dd>
                         <div class="progress progress-striped active m-b-sm">
-                            <div style="width: ${eventDetails.assistancePercentage}%;" class="progress-bar"></div>
+                            <g:if test="${eventDetails.expired}">
+                                <div style="width: ${eventDetails.assistancePercentage}%;" class="progress-bar"></div>
+                            </g:if>
+                            <g:else>
+                                <div style="width: 0;" class="progress-bar"></div>
+                            </g:else>
                         </div>
-                        <small><strong>${eventDetails.assistancePercentage}%</strong> of the enrolled attendees assisted to this event.</small>
+                        <g:if test="${eventDetails.expired}">
+                            <small><strong>${eventDetails.assistancePercentage}%</strong> of the enrolled attendees assisted to this event.</small>
+                        </g:if>
+                        <g:else>
+                            <small>Percentage of assistance pending.</small>
+                        </g:else>
                     </dd>
                 </dl>
             </div>
@@ -152,12 +162,19 @@
                                                 <td style="vertical-align:middle"><strong>${enrollment.attendee.name}</strong></td>
                                                 <td style="vertical-align:middle"><strong>${enrollment.attendee.school}</strong></td>
                                                 <td style="vertical-align:middle">
-                                                    <g:if test="${enrollment.attendance}">
-                                                        <span class="label label-primary"><i class="fa fa-check"></i> Assisted</span>
+
+                                                    <g:if test="${eventDetails.expired}">
+                                                        <g:if test="${enrollment.attendance}">
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Assisted</span>
+                                                        </g:if>
+                                                        <g:else>
+                                                            <span class="label label"><i class="fa fa-close"></i> Not Assisted</span>
+                                                        </g:else>
                                                     </g:if>
                                                     <g:else>
-                                                        <span class="label label"><i class="fa fa-close"></i> Not Assisted</span>
+                                                        <span class="label label"><i class="fa fa-calendar"></i> Pending</span>
                                                     </g:else>
+
                                                 </td>
                                             </tr>
                                         </g:each>
