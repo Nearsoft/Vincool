@@ -7,6 +7,8 @@ class Batch implements Rateable {
 
     static hasMany = [events : Event]
 
+    static hasOne = [landing: Landing]
+
     static constraints = {
         edition blank: false, unique: true, display: true
         isActive()

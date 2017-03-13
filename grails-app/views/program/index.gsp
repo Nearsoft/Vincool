@@ -1,7 +1,7 @@
 <g:applyLayout name="simple">
     <content tag="boxContent">
 
-        <section id="next" class="timeline gray-section" style="margin-top: 0px;">
+        <section class="timeline gray-section" style="margin-top: 0px;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -25,8 +25,7 @@
                                         <h2>${it.eventCategory} - ${it.type}</h2>
                                         <p>${raw(it.description)}
                                         </p>
-                                        <g:link controller="event" action="show" id="${it.id}"
-                                                class="btn btn-xs btn-primary">Mas informacion</g:link>
+                                        <a href="/ns-${batch.edition}/event/show/${it.id}"   class="btn btn-xs btn-primary">Más información</a>
                                         <span class="vertical-date"><g:formatDate date="${it.date}"/></span>
                                     </div>
                                 </div>

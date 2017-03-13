@@ -104,8 +104,8 @@ environments:
         dataSource:
             dbCreate: none
             url: jdbc:postgresql://localhost:5432/vincool
-            username: developer
-            password: postgres
+            username: vincool
+            password: vincool
             driverClassName: org.postgresql.Driver
             dialect: org.hibernate.dialect.PostgreSQLDialect
             properties:
@@ -129,11 +129,12 @@ environments:
 
     test:
         dataSource:
-            dbCreate: update
+            dbCreate: none
             url: jdbc:postgresql://localhost:5432/vincool
+            username: vincool
+            password: vincool
             driverClassName: org.postgresql.Driver
-            username: postgres
-            password: password
+            dialect: org.hibernate.dialect.PostgreSQLDialect
 
     production:
         dataSource:

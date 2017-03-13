@@ -7,22 +7,23 @@
 */
 /* GLOBAL STYLES
 -------------------------------------------------- */
+
 body {
   color: #676a6c;
   font-family: 'Open Sans', helvetica, arial, sans-serif;
 }
 span.navy {
-  color: #e54800;
+  color: var(--main-color);
 }
 p.text-color {
   color: #676a6c;
 }
 a.navy-link {
-  color: #e54800;
+  color: var(--main-color);
   text-decoration: none;
 }
 a.navy-link:hover {
-  color: #e54800;
+  color: var(--main-color);
 }
 section p {
   color: #aeaeae;
@@ -40,10 +41,10 @@ h1 {
   width: 60px;
   height: 1px;
   margin: 60px auto 0;
-  border-bottom: 2px solid #e54800;
+  border-bottom: 2px solid var(--main-color);
 }
 .navy-bg {
-  background-color: #e54800;
+  background-color: var(--main-color);
   color: #ffffff;
 }
 /* CUSTOMIZE THE NAVBAR
@@ -89,10 +90,10 @@ h1 {
 .navbar-default .navbar-nav > .active > a:hover {
   background: transparent;
   color: #fff;
-  border-top: 6px solid #e54800;
+  border-top: 6px solid var(--main-color);
 }
 .navbar-default .navbar-nav > li > a:hover {
-  color: #e54800;
+  color: var(--main-color);
 }
 .navbar-default .navbar-nav > .active > a:focus {
   background: transparent;
@@ -104,7 +105,7 @@ h1 {
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  background: #e54800;
+  background: var(--main-color);
   color: #fff;
 }
 .navbar-default .navbar-brand {
@@ -112,7 +113,7 @@ h1 {
   height: auto;
   display: block;
   font-size: 14px;
-  background: #e54800;
+  background: var(--main-color);
   padding: 15px 20px 15px 20px;
   border-radius: 0 0px 5px 5px;
   font-weight: 700;
@@ -122,7 +123,7 @@ h1 {
   color: #676a6c;
 }
 .navbar-scroll.navbar-default .nav li a:hover {
-  color: #e54800;
+  color: var(--main-color);
 }
 .navbar-wrapper .navbar.navbar-scroll {
   padding-top: 0;
@@ -188,6 +189,7 @@ h1 {
   left: 0;
   min-width: 100%;
   height: 470px;
+  object-fit: cover;
 }
 .carousel-fade .carousel-inner .item {
   opacity: 0;
@@ -290,7 +292,7 @@ h1 {
   margin-top: 40px;
 }
 .features small {
-  color: #e54800;
+  color: var(--main-color);
 }
 .features h2 {
   font-size: 18px;
@@ -303,12 +305,12 @@ h1 {
   font-weight: 200;
 }
 .features-icon {
-  color: #e54800;
+  color: var(--main-color);
   font-size: 40px;
 }
 .navy-section {
   margin-top: 60px;
-  background: #e54800;
+  background: var(--main-color);
   color: #fff;
   padding: 20px 0;
 }
@@ -323,7 +325,7 @@ h1 {
   margin: auto;
 }
 .social-icon a {
-  background: #e54800;
+  background: var(--main-color);
   color: #fff;
   padding: 4px 8px;
   height: 28px;
@@ -332,7 +334,7 @@ h1 {
   border-radius: 50px;
 }
 .social-icon a:hover {
-  background: #e54800;
+  background: var(--main-color);
 }
 .img-small {
   height: 88px;
@@ -354,7 +356,7 @@ h1 {
 }
 .pricing-plan .pricing-price span {
   font-weight: 700;
-  color: #e54800;
+  color: var(--main-color);
 }
 li.pricing-desc {
   font-size: 13px;
@@ -362,7 +364,7 @@ li.pricing-desc {
   padding: 20px 16px ;
 }
 li.pricing-title {
-  background: #e54800;
+  background: var(--main-color);
   color: #fff;
   padding: 10px;
   border-radius: 4px 4px 0 0;
@@ -372,14 +374,14 @@ li.pricing-title {
 .testimonials {
   padding-top: 80px;
   padding-bottom: 90px;
-  background-color: #e54800;
+  background-color: var(--main-color);
   background-image: url('../img/avatar_all.png');
 }
 .big-icon {
   font-size: 56px;
 }
 .features .big-icon {
-  color: #e54800;
+  color: var(--main-color);
 }
 .contact {
   background-image: url('../img/word_map.png');
@@ -397,8 +399,8 @@ li.pricing-title {
   color: #fff;
 }
 .btn-primary {
-  background-color: #e54800;
-  border-color: #e54800;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
   color: #FFFFFF;
   font-size: 14px;
   padding: 10px 20px;
@@ -409,8 +411,8 @@ li.pricing-title {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  background-color: #e54800;
-  border-color: #e54800;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
   color: #FFFFFF;
 }
 .btn-primary:active,
@@ -495,7 +497,7 @@ fieldset[disabled] .btn-primary.active {
     color: #676a6c;
   }
   .navbar-default .nav li a:hover {
-    color: #e54800;
+    color: var(--main-color);
   }
   .navbar-wrapper .navbar {
     padding-top: 0;
@@ -981,7 +983,7 @@ section.comments {
   font-weight: 500;
 }
 .vertical-date small {
-  color: #e54800;
+  color: var(--main-color);
   font-weight: 400;
 }
 .vertical-timeline-content::before {

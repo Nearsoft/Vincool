@@ -148,7 +148,6 @@
             <div class="navy-line"></div>
 
             <h1>Los <span class="navy">Temas</span></h1>
-            <g:link controller="program" class="btn btn-primary">Temario Completo</g:link>
         </div>
     </div>
 

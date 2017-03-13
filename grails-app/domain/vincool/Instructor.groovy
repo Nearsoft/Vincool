@@ -6,6 +6,8 @@ class Instructor extends SecUser implements Rateable{
 
     Boolean isPublic = false
 
+    static hasMany = [events: Event]
+
     static constraints = {
 
     }

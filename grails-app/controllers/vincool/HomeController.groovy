@@ -1,11 +1,12 @@
 package vincool
 
+
 import java.time.LocalDate
 
 class HomeController {
     def roleUserService
 
-    def index() {
+    def index(String id) {
         if (roleUserService.isCurrentUserAnAttendee()) {
             forward controller: "program"
         } else if (roleUserService.isCurrentUserAInstructor()) {

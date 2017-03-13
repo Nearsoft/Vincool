@@ -43,14 +43,18 @@
     <asset:javascript src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"/>
     <asset:javascript src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"/>
     <![endif]-->
-
-    <!-- Custom styles for this template -->
-    <asset:link href="landing_page/css/style.css" rel="stylesheet"/>
     <asset:javascript src="landing_page/js/jquery-2.1.1.js"/>
     <asset:javascript src="landing_page/js/pace.min.js"/>
     <asset:javascript src="landing_page/js/bootstrap.min.js"/>
-
+    <!-- Custom styles for this template -->
     <g:layoutHead/>
+    <style media="screen" type="text/css">
+    body{
+        --main-color:#${session.color?:'e54800'};
+    }
+    </style>
+    <asset:link href="landing_page/css/style.css" rel="stylesheet"/>
+
 </head>
 
 <body id="page-top">
@@ -70,11 +74,10 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/#page-top">Home</a></li>
-                    <li><a href="/#program">El Programa</a></li>
-                    <li><a href="/#team">Los Mentores</a></li>
-                    <li><a href="/#next">Próximas clases</a></li>
-                    <li><g:link controller="calendar">Calendario</g:link></li>
+                    <li><a href="${batch?.id? '/ns-'+batch.edition+'/': ''}#page-top">Home</a></li>
+                    <li><a href="${batch?.id? '/ns-'+batch.edition+'/': ''}#program">El Programa</a></li>
+                    <li><a href="${batch?.id? '/ns-'+batch.edition+'/': ''}#team">Los Instructores</a></li>
+                    <li><a href="${batch?.id? '/ns-'+batch.edition+'/': ''}#next">Próximas clases</a></li>
                     <sec:ifNotLoggedIn><li><a class="page-scroll" href="/login">Login</a></li></sec:ifNotLoggedIn>
                 </ul>
             </div>
