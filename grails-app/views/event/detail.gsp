@@ -15,7 +15,12 @@
                     <h2>${event.eventCategory.subCategory}</h2>
                 </div>
                 <dl class="dl-horizontal">
-                    <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                    <g:if test="${eventDetails.expired}">
+                        <dt>Status:</dt> <dd><span class="label">Completed</span></dd>
+                    </g:if>
+                    <g:else>
+                        <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                    </g:else>
                 </dl>
             </div>
         </div>
@@ -167,10 +172,10 @@
 
                                                     <g:if test="${eventDetails.expired}">
                                                         <g:if test="${enrollment.attendance}">
-                                                            <span class="label label-primary"><i class="fa fa-check"></i> Assisted</span>
+                                                            <span class="label label-primary">Assisted</span>
                                                         </g:if>
                                                         <g:else>
-                                                            <span class="label"><i class="fa fa-close"></i> Not Assisted</span>
+                                                            <span class="label">Not Assisted</span>
                                                         </g:else>
                                                     </g:if>
                                                 </td>
