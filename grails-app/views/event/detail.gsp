@@ -143,8 +143,10 @@
                                         <tr>
                                             <th>Profile Picture</th>
                                             <th>Name</th>
-                                            <th>School</th>
-                                            <th>Assistance</th>
+                                            <th>Email</th>
+                                            <g:if test="${eventDetails.expired}">
+                                                <th>Assistance</th>
+                                            </g:if>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -160,7 +162,7 @@
                                                     </g:else>
                                                 </td>
                                                 <td style="vertical-align:middle"><strong>${enrollment.attendee.name}</strong></td>
-                                                <td style="vertical-align:middle"><strong>${enrollment.attendee.school}</strong></td>
+                                                <td style="vertical-align:middle"><strong>${enrollment.attendee.email}</strong></td>
                                                 <td style="vertical-align:middle">
 
                                                     <g:if test="${eventDetails.expired}">
@@ -168,13 +170,9 @@
                                                             <span class="label label-primary"><i class="fa fa-check"></i> Assisted</span>
                                                         </g:if>
                                                         <g:else>
-                                                            <span class="label label"><i class="fa fa-close"></i> Not Assisted</span>
+                                                            <span class="label"><i class="fa fa-close"></i> Not Assisted</span>
                                                         </g:else>
                                                     </g:if>
-                                                    <g:else>
-                                                        <span class="label label"><i class="fa fa-calendar"></i> Pending</span>
-                                                    </g:else>
-
                                                 </td>
                                             </tr>
                                         </g:each>
