@@ -15,7 +15,12 @@
                     <h2>${event.eventCategory.subCategory}</h2>
                 </div>
                 <dl class="dl-horizontal">
-                    <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                    <g:if test="${eventDetails.expired}">
+                        <dt>Status:</dt> <dd><span class="label">Completed</span></dd>
+                    </g:if>
+                    <g:else>
+                        <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                    </g:else>
                 </dl>
             </div>
         </div>
@@ -63,9 +68,19 @@
                     <dt>Assistance Percentage:</dt>
                     <dd>
                         <div class="progress progress-striped active m-b-sm">
-                            <div style="width: ${eventDetails.assistancePercentage}%;" class="progress-bar"></div>
+                            <g:if test="${eventDetails.expired}">
+                                <div style="width: ${eventDetails.assistancePercentage}%;" class="progress-bar"></div>
+                            </g:if>
+                            <g:else>
+                                <div style="width: 0;" class="progress-bar"></div>
+                            </g:else>
                         </div>
-                        <small><strong>${eventDetails.assistancePercentage}%</strong> of the enrolled attendees assisted to this event.</small>
+                        <g:if test="${eventDetails.expired}">
+                            <small><strong>${eventDetails.assistancePercentage}%</strong> of the enrolled attendees assisted to this event.</small>
+                        </g:if>
+                        <g:else>
+                            <small>Percentage of assistance pending.</small>
+                        </g:else>
                     </dd>
                 </dl>
             </div>
@@ -126,8 +141,10 @@
                                         <tr>
                                             <th>Profile Picture</th>
                                             <th>Name</th>
-                                            <th>School</th>
-                                            <th>Assistance</th>
+                                            <th>Email</th>
+                                            <g:if test="${eventDetails.expired}">
+                                                <th>Assistance</th>
+                                            </g:if>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -143,14 +160,17 @@
                                                     </g:else>
                                                 </td>
                                                 <td style="vertical-align:middle"><strong>${enrollment.attendee.name}</strong></td>
-                                                <td style="vertical-align:middle"><strong>${enrollment.attendee.school}</strong></td>
+                                                <td style="vertical-align:middle"><strong>${enrollment.attendee.email}</strong></td>
                                                 <td style="vertical-align:middle">
-                                                    <g:if test="${enrollment.attendance}">
-                                                        <span class="label label-primary"><i class="fa fa-check"></i> Assisted</span>
+
+                                                    <g:if test="${eventDetails.expired}">
+                                                        <g:if test="${enrollment.attendance}">
+                                                            <span class="label label-primary">Assisted</span>
+                                                        </g:if>
+                                                        <g:else>
+                                                            <span class="label">Not Assisted</span>
+                                                        </g:else>
                                                     </g:if>
-                                                    <g:else>
-                                                        <span class="label label"><i class="fa fa-close"></i> Not Assisted</span>
-                                                    </g:else>
                                                 </td>
                                             </tr>
                                         </g:each>

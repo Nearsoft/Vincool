@@ -113,7 +113,8 @@ class EventController{
             def eventDetails = [enrollments         : enrollments,
                                 attendeesPictures   : attendeesPictures,
                                 assistancePercentage: assistancePercentage,
-                                ownsEvent           : ownsEvent]
+                                ownsEvent           : ownsEvent,
+                                expired             : expired]
             render([view: "detail", model: [event: event, eventDetails: eventDetails]])
         }
 
